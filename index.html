@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badrinath Reddy | ML Engineer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #2196F3;
+            --dark: #1a1a2e;
+            --darker: #0f0f1e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s 0.4s backwards;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--light);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid var(--light);
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content ul {
+            margin-left: 1.5rem;
+            color: var(--gray);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .project-header i {
+            font-size: 3rem;
+            opacity: 0.3;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-body h3 {
+            margin-bottom: 1rem;
+        }
+
+        .project-body p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--primary);
+        }
+
+        /* Publications Section */
+        .publications {
+            background: var(--light);
+        }
+
+        .publication-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .publication-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-meta {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2::after {
+            background: white;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-link i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">BR</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Badrinath Reddy Thadikala Prakash</h1>
+            <p class="subtitle">Machine Learning Engineer | NLP Specialist | Deep Learning Researcher</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#projects" class="btn btn-secondary">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a passionate Machine Learning Engineer currently pursuing my Master's in Computer and Information Sciences at the University of Central Florida. With a strong foundation in NLP, Deep Learning, and Computer Vision, I thrive on building intelligent systems that solve real-world problems.</p>
+                    <p>My journey in AI has been marked by innovative projects, published research, and a commitment to advancing the field of machine learning. I specialize in transformer-based models, bilingual NLP systems, and developing accessible AI solutions.</p>
+                    <p>When I'm not coding or researching, I'm teaching and mentoring students, sharing my passion for AI with the next generation of engineers.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>3.71</h3>
+                        <p>Graduate GPA</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>5+</h3>
+                        <p>Major Projects</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>1</h3>
+                        <p>Publication</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> ML/DL Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">scikit-learn</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> NLP Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">NLTK</span>
+                        <span class="skill-tag">spaCy</span>
+                        <span class="skill-tag">MuRIL</span>
+                        <span class="skill-tag">IndicBART</span>
+                        <span class="skill-tag">Transformers</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-eye"></i> Computer Vision</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">YOLOv5</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">CNNs</span>
+                        <span class="skill-tag">Object Detection</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Teaching Assistant</h3>
+                        <div class="date"><i class="fas fa-calendar"></i> Sep 2025 - Present | University of Central Florida</div>
+                        <ul>
+                            <li>Evaluate assignments and projects for graduate-level CS courses</li>
+                            <li>Provide academic support and mentorship to students</li>
+                            <li>Facilitate discussion sessions on ML concepts and research methodologies</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Graduate Research Assistant - NLP</h3>
+                        <div class="date"><i class="fas fa-calendar"></i> Jan 2025 - Aug 2025 | University of Central Florida</div>
+                        <ul>
+                            <li>Developed bilingual NLP framework achieving 12-21% BLEU improvement</li>
+                            <li>Implemented cultural adaptation modules improving F1-score by 9.5%</li>
+                            <li>Optimized inference time by 15% through hyperparameter tuning</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Machine Learning Mentorship</h3>
+                        <div class="date"><i class="fas fa-calendar"></i> Mar 2023 - May 2023 | Teachnook (Remote)</div>
+                        <ul>
+                            <li>Built time-series prediction app for medical dataset analysis</li>
+                            <li>Achieved 98% accuracy with TabTransformer architecture</li>
+                            <li>Reduced training time by 30% through optimized pipelines</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>AI Developer - Third Eye Project</h3>
+                        <div class="date"><i class="fas fa-calendar"></i> Aug 2022 - Dec 2022 | VIT-AP University</div>
+                        <ul>
+                            <li>Developed assistive wearable with YOLOv5 object detection</li>
+                            <li>Achieved 92% accuracy for real-time spatial awareness</li>
+                            <li>Won 2nd place at VIT-AP Engineering Expo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-language"></i>
+                        <h3>Hindi-English NLP Framework</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Comprehensive bilingual NLP system with translation, sentiment analysis, and code-mixing detection. Achieved significant improvements over baseline models through custom architecture and domain adaptation.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">PyTorch</span>
+                            <span class="tech-badge">Transformers</span>
+                            <span class="tech-badge">MuRIL</span>
+                            <span class="tech-badge">IndicBART</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-robot"></i>
+                        <h3>FOS BOT</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>NLP-based conversational AI assistant with text summarization, paraphrasing capabilities. Integrated ChatGPT and Google Gemini APIs for versatile natural language processing tasks.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">ChatGPT API</span>
+                            <span class="tech-badge">Google Gemini</span>
+                            <span class="tech-badge">NLP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-table"></i>
+                        <h3>TabTransformer Diabetes Prediction</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Deployed Tabular Transformer architecture on BRFSS 2015 diabetes dataset achieving 98% accuracy through attention mechanisms, outperforming traditional ML baselines significantly.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">PyTorch</span>
+                            <span class="tech-badge">pandas</span>
+                            <span class="tech-badge">NumPy</span>
+                            <span class="tech-badge">scikit-learn</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-eye"></i>
+                        <h3>Third Eye for the Blind</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Award-winning assistive wearable device using YOLOv5 for object detection and custom NLP voice assistant. Enables visually impaired users to navigate independently through audio feedback.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">YOLOv5</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">NLP</span>
+                            <span class="tech-badge">Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <i class="fas fa-microscope"></i>
+                        <h3>White Blood Cell Classification</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>Published research using CNN, SVM, and KNN to classify WBC types for early leukemia detection. Applied outlier detection techniques for enhanced feature extraction.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">TensorFlow</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">CNN</span>
+                            <span class="tech-badge">Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="publications">
+        <div class="container">
+            <h2>Publications</h2>
+            <div class="publication-card">
+                <h3>White Blood Cells Classification using CNN</h3>
+                <div class="publication-meta">
+                    <i class="fas fa-building"></i> European Alliance for Innovation (EAI) | 
+                    <i class="fas fa-calendar"></i> January 15, 2024
+                </div>
+                <p>Developed CNN-based classification model for identifying white blood cell types to aid in early leukemia diagnosis. Applied convolutional neural networks, SVM, and KNN algorithms with outlier detection techniques to extract enhanced features, achieving high precision rates for medical diagnostic applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>I'm always open to discussing new opportunities, collaborations, or just chatting about AI and machine learning!</p>
+            <div class="contact-links">
+                <a href="mailto:badrinath.t.p007@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+                <a href="https://www.linkedin.com/in/badrinath-reddy-thadikala-prakash-130a3b1b4/" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/thadikalaprakashbadrinathreddy" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="tel:+13215270109" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>Phone</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
